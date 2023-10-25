@@ -1,17 +1,20 @@
-import chalk from 'chalk';
 import randomColor from 'randomcolor';
+import { useState } from 'react';
 
 export default function App() {
-  const backgroundColor = randomColor();
-  const hexCode = chalk.hex(backgroundColor);
-
+  const [color, setColor] = useState('');
   return (
     <>
       <h1>React Random Color Generator</h1>
-      <button>Generate</button>
-      <div>
-        Generated Color: {backgroundColor} {hexCode}
-      </div>
+      <button
+        onClick={() => {
+          const newBackgroundColor = randomColor();
+          setColor(newBackgroundColor);
+        }}
+      >
+        Generate
+      </button>
+      <div style={{ backgroundColor: color }}>Generated Color: {color}</div>
     </>
   );
 }
